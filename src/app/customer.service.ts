@@ -7,11 +7,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CustomerService {
-  private getCustomerRewardPointsUrl = environment.baseUrl + '/getCustomerRewardPoints/';
+  private getAllTransactionsUrl = environment.baseUrl + '/getAllTransactions';
 
   constructor(private httpClient: HttpClient) { }
 
-  getCustomerRewardPoints(customerName: string): Observable<any> {
-    return this.httpClient.get(this.getCustomerRewardPointsUrl + customerName);
+  getAllTransactions(): Observable<any> {
+    return this.httpClient.get(this.getAllTransactionsUrl);
   }
 }
