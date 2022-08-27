@@ -38,14 +38,39 @@
   </div>
 </div>
 
+<h4 class="mt-5">Monthly total per customer</h4>
 <div class="grid">
-  <div class="col-9">
-    <h4>Monthly total per customer</h4>
-    <table>
-      <tr>
-        <th>Customer Name</th>
-      </tr>
+  <div class="col-4" *ngFor="let entry of resultMap.entries()">
+    <p-card styleClass="border-1">
+      <ng-template pTemplate="header">
+        <div class="m-4"><span class="mr-4">Customer Name</span> <b
+            class="border-1 p-2 bg-green-100 border-round">{{entry[0]}}</b>
+        </div>
+      </ng-template>
+      <div class="grid">
+        <div class="col-3">
+          <div class="border-bottom-2 font-bold">Month</div>
+          <div *ngFor="let month of entry[1].keys()" class="my-2">
+            {{month}}
+          </div>
+        </div>
 
-    </table>
+        <div class="col-5">
+          <div class="border-bottom-2 font-bold">Reward Points</div>
+          <div *ngFor="let rewardPoints of entry[1].values()" class="my-2">
+            {{rewardPoints}}
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="col-6">
+          Total Reward Points
+        </div>
+        <div class="col-6">
+          <b class="border-1 p-2 bg-green-100 border-round">{{customerTotalRewardPoints.get(entry[0])}}</b>
+        </div>
+      </div>
+    </p-card>
   </div>
 </div>

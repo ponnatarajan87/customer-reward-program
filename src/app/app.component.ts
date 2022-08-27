@@ -11,8 +11,8 @@ export class AppComponent implements OnInit {
   title = 'customer-reward-program';
   customers: string[] = ["Justice Simpson", "Robin Willis", "Kerry Koch"];
   customerTransactions: CustomerTransaction[] = [];
-  totalRewardPoints: number = 0;
   resultMap: Map<string, Map<string, number>> = new Map<string, Map<string, number>>();
+  customerTotalRewardPoints: Map<string, number> = new Map<string, number>;
 
   constructor(private customerService: CustomerService) { }
 
@@ -29,12 +29,15 @@ export class AppComponent implements OnInit {
 
           if (!this.resultMap.has(customerName)) {
             this.resultMap.set(customerName, monthRewardPointsMap.set(month, rewardPoints));
+            this.customerTotalRewardPoints.set(customerName, rewardPoints);
           } else {
             if (!this.resultMap.get(customerName)?.has(month)) {
-              this.resultMap?.get(customerName)?.set(month, rewardPoints);
+              this.resultMap.get(customerName)?.set(month, rewardPoints);
             } else {
-              this.resultMap.get(customerName)?.set(month, (this.resultMap?.get(customerName)?.get(month) || 0) + rewardPoints);
+              this.resultMap.get(customerName)?.set(month, (this.resultMap.get(customerName)?.get(month) || 0) + rewardPoints);
             }
+
+            this.customerTotalRewardPoints.set(customerName, (this.customerTotalRewardPoints.get(customerName) || 0) + rewardPoints);
           }
         }
       }
