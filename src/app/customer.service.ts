@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CustomerService {
-  private getAllTransactionsUrl = environment.baseUrl + '/getAllTransactions';
+  private getAllTransactionsUrl = environment.baseUrl + 'getAllTransactions';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -9,7 +9,7 @@ import { CustomerTransaction } from './customerTransaction';
 })
 export class AppComponent implements OnInit {
   title = 'customer-reward-program';
-  customers: string[] = ["Justice Simpson", "Robin Willis", "Kerry Koch"];
+  customers: string[] = [];
   customerTransactions: CustomerTransaction[] = [];
   resultMap: Map<string, Map<string, number>> = new Map<string, Map<string, number>>();
   customerTotalRewardPoints: Map<string, number> = new Map<string, number>;
@@ -39,6 +39,9 @@ export class AppComponent implements OnInit {
 
             this.customerTotalRewardPoints.set(customerName, (this.customerTotalRewardPoints.get(customerName) || 0) + rewardPoints);
           }
+        }
+        for (const entry of this.resultMap.entries()) {
+          this.customers.push(entry[0]);
         }
       }
     );
